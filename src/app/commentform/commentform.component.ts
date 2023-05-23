@@ -214,8 +214,6 @@ export class CommentformComponent implements OnInit, AfterViewInit {
             if (res) {
               this.spinner = false;
               this.commentlist =  res.response.sort((a:any, b:any) => new Date(b.CurrentDate).getTime() - new Date(a.CurrentDate).getTime());
-
-              console.log(this.commentlist,"commentlist");
               this.commentlist.forEach((ele: any, i) => {
                 ele.date = moment(ele.CurrentDate).fromNow();
               });
