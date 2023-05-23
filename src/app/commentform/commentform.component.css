@@ -98,3 +98,12 @@ button:disabled{
 }
 
 
+
+#paragraph {
+  color: #070757;
+  font-size: 20px;
+  font-weight: 600;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

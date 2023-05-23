@@ -14,13 +14,15 @@
               <div>
                 <mat-form-field class="example-full-width fieldWrapper" appearance="outline">
                   <mat-label>Name</mat-label>
-                  <input matInput class="matInput" formControlName="name" titleCase placeholder="Enter Your Full Name"
+                  <input matInput class="matInput" formControlName="name" titleCase placeholder="Enter Your Full Name" (input)="inputData($event)"
                     required>
                 </mat-form-field>
                 <mat-error class="errormessage"
                   *ngIf="this.AddCommentForm.get('name').invalid&& this.AddCommentForm.get('name').touched">
                   **Only character are allowed
                 </mat-error>
+                <mat-error *ngIf="inputValueNo"  style="color: red;"> ** Name Already Added</mat-error>
+
                 <div>
                 </div>
 
@@ -76,21 +78,15 @@
               </div>
               <div class="col-md-5">
                 <p class="mb-0 mt-2" style="color:#070757;    font-size: 20px;
-                font-weight: 600;">
+                font-weight: 600;width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;">
                   {{item?.name}}
                 </p>
-                <!-- <div>
-                  <input placeholder="kjhgvc" id="searchTxt"  [readOnly]="enableInput"
-                     style="outline: none; border: none;" type="text"   >
-                  <mat-icon id="edit{{i}}" (click)="onClickEdit(i,item)">edit</mat-icon>
-                  <mat-icon id="right{{i}}" (click)="onClickRight(i,item);">check</mat-icon>
-                </div> -->
-
               </div>
               <div class="col-md-4">
                 <p>
                   {{item?.date }}
-                  <!-- {{item?.CurrentDate | date : 'dd/MM/yy, h:mm a'}} -->
                 </p>
               </div>
             </div>
