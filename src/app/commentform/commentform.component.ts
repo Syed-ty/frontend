@@ -3,7 +3,7 @@
 
 
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { FormGroup,FormBuilder,Validators, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import {CommentService} from '../comment.service'
@@ -19,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./commentform.component.css']
 })
 export class CommentformComponent implements OnInit,AfterViewInit {
-
+   spinner:boolean=false;
   AddCommentForm :FormGroup
   EditCommentForm :FormGroup
   constructor(
@@ -56,11 +56,19 @@ export class CommentformComponent implements OnInit,AfterViewInit {
   // },1000)
   }
 
+
+  @ViewChild(FormGroupDirective)
+
+  formGroupDirective!: FormGroupDirective;
+
+
   uuid:number = 1
 
   commentlist:any[] = []
   getAllData(){
+    this.spinner=true
     this.service.getallcomment().subscribe((res)=>{
+      this.spinner=false
       this.commentlist = res.response
         this.commentlist.forEach((ele:any,i)=>{
       ele.date = moment(ele.CurrentDate).fromNow()
@@ -69,14 +77,27 @@ export class CommentformComponent implements OnInit,AfterViewInit {
   }
 
   onsubmit(){
+    // this.spinner=true
     const body = {
       "name":this.AddCommentForm.get('name').value,
       "comment":this.AddCommentForm.get('comment').value,
       "id":uuidv4(),
     }
     this.service.addcomment(body).subscribe((res)=>{
+      // this.spinner=false;
+      this.toastr.success(res.message)
+      // this.AddCommentForm.get('name').clearValidators()
+      this.AddCommentForm.reset()
+      this.formGroupDirective.resetForm();
       this.getAllData()
-    })
+    },(err) => {
+      if (err.status) {
+        this.toastr.error(err.error.message);
+      } else {
+        this.toastr.error('CONNECTION_ERROR');
+      }
+      }
+    )
   }
 
   enableInput:boolean=true
@@ -112,9 +133,15 @@ export class CommentformComponent implements OnInit,AfterViewInit {
 
   sortedlist:any[] = []
 onSort(){
+  this.spinner=true
   this.service.sortNameAscendingOrder().subscribe((res)=>{
+    this.spinner=false;
     this.commentlist = res.response
     this.sortedlist = res.response
+    this.commentlist = res.response
+    this.commentlist.forEach((ele:any,i)=>{
+  ele.date = moment(ele.CurrentDate).fromNow()
+})
   })
 }
 
@@ -132,7 +159,7 @@ openEditDialog(event: any) {
       {
         panelClass: ['appointmentdialog', 'animate__animated', 'animate__slideInRight', 'patientappointment'],
         data: this.selectedDepartment,
-        width: '670px', height: '100%', position: { top: '0', right: '0' },
+        width: '370px', height: '300px',
         disableClose: true, hasBackdrop: true,
       });
 

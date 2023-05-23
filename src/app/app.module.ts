@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog'
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     MatIconModule,
     MatSelectModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       maxOpened: 1,
       timeOut: 3000,

@@ -8,3 +8,93 @@
   margin: 10px;
   cursor:pointer
 }
+.commentform{
+  width: 100%;
+  height: 100vh;
+}
+.title{
+  color: #1818a3;
+    font-weight: bold;
+    font-family: 'Roboto';
+}
+:host::ng-deep.mat-form-field {
+  width: 100%;
+}
+:host::ng-deep.mat-form-field-required-marker{
+  color:red
+}
+:host::ng-deep.mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+.submit{
+  padding: 6px 65px;
+    background: #262169;
+    border: none;
+}
+button:disabled{
+  background-color: rgba(0,0,0,0.4);
+  opacity: 0.4;
+  color: black;
+}
+.icon{
+  position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 10px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    color: #070757;
+    align-items: center;
+    justify-content: center;
+}
+.commentscard{
+  height: 500px;
+  overflow:hidden;
+  overflow-y: auto;
+}
+.sortbtn{
+  background: #070757;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  box-shadow:none;
+}
+.commenttext{
+  width: 100%;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  background: whitesmoke;
+  height: 90px;
+  overflow-y: auto;
+  padding: 10px;
+}
+.commenttext::-webkit-scrollbar
+{
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.spinner-content{
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: fixed;
+  overflow: hidden;
+}
+.spinner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+
