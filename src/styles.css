@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* ngx-toastr styles */
+@import '~ngx-toastr/toastr.css';
+
+.appointmentdialog .mat-dialog-container {
+  padding: 0px;
+  border-radius: 14px;
+  margin-top: 10px;
+}
+
+.patientappointment .mat-dialog-container {
+  padding: 0px !important;
+}

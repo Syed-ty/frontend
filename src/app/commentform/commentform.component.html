@@ -1,0 +1,154 @@
+
+
+  <div class="row">
+    <div class="col-md-4">
+      <form [formGroup]="AddCommentForm" class="mt-3">
+      <mat-card>
+        <div class="row mt-2">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-5 text-center">
+            <h1 class="mt-2">
+              ADD Comment
+            </h1>
+            <div>
+              <mat-label class="d-block">Name *</mat-label>
+              <mat-form-field class="example-full-width fieldWrapper" appearance="outline">
+                <input matInput class="matInput" formControlName="name" titleCase placeholder="Enter Your Full Name"
+                  required>
+              </mat-form-field>
+              <mat-error class="errormessage"
+                *ngIf="this.AddCommentForm.get('name').invalid&& this.AddCommentForm.get('name').touched">
+                **Only character are allowed
+              </mat-error>
+              <div>
+              </div>
+
+
+              <mat-label class="d-block">Comment *</mat-label>
+              <mat-form-field class="example-full-width fieldWrapper" appearance="outline">
+                <input matInput class="matInput" formControlName="comment" titleCase placeholder="Enter Your Full Name"
+                  required>
+              </mat-form-field>
+            </div>
+
+
+
+            <div class="mt-3">
+              <button class="btn btn-primary" [disabled]="AddCommentForm.invalid" (click)="onsubmit()">
+                Add
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </mat-card>
+    </form>
+    </div>
+    <div class="col-md-4">
+      </div>
+    <div class="col-md-4 mt-3">
+      <mat-card>
+        <div class="row">
+          <div class="float-left col-md-6">
+            {{commentlist.length}} comments
+          </div>
+          <div class="float-right col-md-6">
+            <button class="btn btn-primary" (click)="onSort()">
+              Sort By Name
+            </button>
+
+            <span class="clickable d-inline-flex"  *ngIf="sortedlist?.length>0"
+              (click)="onClearAllFilter()">Clear All</span>
+
+             </div>
+          </div>
+
+        <hr>
+        <mat-card class="mt-3" *ngFor="let item of commentlist;index as i">
+          <div class="row mt-2">
+            <div class="col-md-3">
+              <img src="../../assets/images/images.jpg" alt="" style="height:32%">
+              <div>
+                <mat-icon class="mt-4" (click)="OnMatCardClickEvent(item);openEditDialog($event)" style="color:#007bff;cursor:pointer">edit</mat-icon>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <p style="color:#007bff;    font-size: 20px;
+              font-weight: 600;">
+                {{item?.name}}
+              </p>
+              <!-- <div>
+                <input placeholder="kjhgvc" id="searchTxt"  [readOnly]="enableInput"
+                   style="outline: none; border: none;" type="text"   >
+                <mat-icon id="edit{{i}}" (click)="onClickEdit(i,item)">edit</mat-icon>
+                <mat-icon id="right{{i}}" (click)="onClickRight(i,item);">check</mat-icon>
+              </div> -->
+              <div>
+                {{item?.comment}}
+              </div>
+            </div>
+            <div class="col-md-3">
+              <p>
+                <!-- {{item?.date }} -->
+                {{item?.CurrentDate | date : 'dd/MM/yy, h:mm a'}}
+              </p>
+            </div>
+          </div>
+        </mat-card>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+  <ng-template #editcomment>
+    <div class="container">
+      <div class="row popupheader rowmargin" mat-dialog-title>
+        <div class="allHeader-color pl-2 title">
+          Edit Test
+          <button (click)="cancelModel()" class="btn float-right mdlclose" mat-dialog-close>
+            <mat-icon style="color: #00297b">close</mat-icon>
+          </button>
+
+        </div>
+      </div>
+      <form [formGroup]="EditCommentForm" class="mt-3">
+        <mat-card>
+          <div class="row mt-2">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-5 text-center">
+              <h1 class="mt-2">
+                Edit Comment
+              </h1>
+              <div>
+                <mat-label class="d-block">Name </mat-label>
+                <mat-form-field class="example-full-width fieldWrapper" appearance="outline">
+                  <input matInput class="matInput" formControlName="name" readonly [disabled]="true"  placeholder="Enter Your Full Name"
+                    required>
+                </mat-form-field>
+                <mat-error class="errormessage"
+                  *ngIf="this.EditCommentForm.get('name').invalid&& this.EditCommentForm.get('name').touched">
+                  **Only character are allowed
+                </mat-error>
+                <div>
+                </div>
+
+
+                <mat-label class="d-block">Comment *</mat-label>
+                <mat-form-field class="example-full-width fieldWrapper" appearance="outline">
+                  <input matInput class="matInput" formControlName="comment" titleCase placeholder="Enter Your Full Name"
+                    required>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+      <div class="example-button-row  mt-2 d-flex justify-content-end">
+        <button mat-button class="color" [disabled]="!EditCommentForm.valid" (click)="editCommentDetails()">Update</button>
+      </div>
+    </div>
+  </ng-template>

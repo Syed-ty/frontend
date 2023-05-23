@@ -1,0 +1,10 @@
+.color {
+  background-color: #0081FF;
+  color: white;
+}
+.clickable{
+  color: #0081FF;
+  font-size: 13px;
+  margin: 10px;
+  cursor:pointer
+}
