@@ -92,7 +92,7 @@ export class CommentformComponent implements OnInit, AfterViewInit {
     this.service.getallcomment().subscribe(
       (res) => {
         if (res) {
-          this.spinner = false;
+          // this.spinner = false;
           this.commentlist = res.response;
           this.commentlist.forEach((ele: any, i) => {
             ele.date = moment(ele.CurrentDate).fromNow();

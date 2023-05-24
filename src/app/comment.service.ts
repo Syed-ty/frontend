@@ -43,7 +43,7 @@ export class CommentService {
       error:boolean,
       response:any,
       message:string
-    }> (`${environment.baseUrl}/comment/update/${id}`,data)
+    }> (`${environment.baseUrl}/comment/updateComment/${id}`,data)
     }
 
 
@@ -52,7 +52,7 @@ export class CommentService {
         error:boolean,
         message:string,
         response:any
-      }>(`${environment.baseUrl}/comment/sort`)
+      }>(`${environment.baseUrl}/comment/sortNameAscending`)
     }
 
 
