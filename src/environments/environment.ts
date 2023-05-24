@@ -5,7 +5,7 @@
 export const environment = {
   production: true,
   // baseUrl:'http://localhost:8002',
-  baseUrl :'https://api.chandan.club/',
+  baseUrl :'https://api.chandan.club',
   // baseUrl:'http://localhost:3000',
 };
 

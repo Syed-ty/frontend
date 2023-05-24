@@ -102,7 +102,7 @@ export class CommentformComponent implements OnInit, AfterViewInit {
       (err) => {
         if (err.status) {
           this.spinner = false;
-          this.toastr.error(err.error.message);
+          this.toastr.error(err.message);
         } else {
           this.spinner = false;
           this.toastr.error('CONNECTION_ERROR');
